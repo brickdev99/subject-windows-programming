@@ -12,7 +12,7 @@ namespace WIPR.Project.QLSV
     class Student
     {
         MY_DB dB = new MY_DB();
-
+        
         //Function to insert a new student
         public bool insertStudent(int id, string firstname, string lastname, DateTime birthdate, string gender, string phone, string address, MemoryStream picture)
         {
@@ -30,16 +30,8 @@ namespace WIPR.Project.QLSV
 
             dB.openConnection();
 
-            if((command.ExecuteNonQuery() == 1))
-            {
-                dB.closeConnection();
-                return true;
-            }
-            else
-            {
-                dB.closeConnection();
-                return false;
-            }
+            if ((command.ExecuteNonQuery() == 1)) { dB.closeConnection(); return true; }
+            else { dB.closeConnection(); return false; }
         }
 
         public DataTable getStudents(SqlCommand command)
@@ -55,8 +47,7 @@ namespace WIPR.Project.QLSV
 
         public bool updateStudent(int id, string firstname, string lastname, DateTime birthdate, string gender, string phone, string address, MemoryStream picture)
         {
-            SqlCommand command = new SqlCommand(
-                "UPDATE student SET firstname=@Fname, lastname=@Lname, birthdate=@Bdate, gender=@Gender, phone=@Phone, address=@Address, picture=@Picture WHERE  id=@ID",
+            SqlCommand command = new SqlCommand("UPDATE student SET firstname=@Fname, lastname=@Lname, birthdate=@Bdate, gender=@Gender, phone=@Phone, address=@Address, picture=@Picture WHERE  id=@ID",
                 dB.GetConnection);
 
             command.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = id;
@@ -70,16 +61,19 @@ namespace WIPR.Project.QLSV
 
             dB.openConnection();
 
-            if ((command.ExecuteNonQuery() == 1))
-            {
-                dB.closeConnection();
-                return true;
-            }
-            else
-            {
-                dB.closeConnection();
-                return false;
-            }
+            if ((command.ExecuteNonQuery() == 1)) { dB.closeConnection(); return true; }
+            else { dB.closeConnection(); return false; }
+        }
+
+        public bool deleteStudent(int id)
+        {
+            SqlCommand command = new SqlCommand("DELETE FROM student WHERE id = @id", dB.GetConnection);
+
+            command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+            dB.openConnection();
+             
+            if((command.ExecuteNonQuery() == 1)) { dB.closeConnection();return true; }
+            else { dB.closeConnection(); return false; }
         }
     }
 }

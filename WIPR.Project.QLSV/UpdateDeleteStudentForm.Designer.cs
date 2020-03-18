@@ -38,7 +38,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.TextBoxID = new System.Windows.Forms.TextBox();
             this.ButtonFind = new System.Windows.Forms.Button();
-            this.TextBoxFisrtName = new System.Windows.Forms.TextBox();
+            this.TextBoxFirstName = new System.Windows.Forms.TextBox();
             this.TextBoxLastName = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.RadioButtonMale = new System.Windows.Forms.RadioButton();
@@ -46,14 +46,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.TextBoxPhone = new System.Windows.Forms.TextBox();
             this.TextBoxAddress = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PictureBoxStudentImage = new System.Windows.Forms.PictureBox();
             this.ButtonUploadImage = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
             this.ButtonRemove = new System.Windows.Forms.Button();
             this.ComboBoxSearch = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStudentImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -157,12 +157,12 @@
             this.ButtonFind.UseVisualStyleBackColor = false;
             this.ButtonFind.Click += new System.EventHandler(this.ButtonFind_Click);
             // 
-            // TextBoxFisrtName
+            // TextBoxFirstName
             // 
-            this.TextBoxFisrtName.Location = new System.Drawing.Point(117, 70);
-            this.TextBoxFisrtName.Name = "TextBoxFisrtName";
-            this.TextBoxFisrtName.Size = new System.Drawing.Size(230, 20);
-            this.TextBoxFisrtName.TabIndex = 3;
+            this.TextBoxFirstName.Location = new System.Drawing.Point(117, 70);
+            this.TextBoxFirstName.Name = "TextBoxFirstName";
+            this.TextBoxFirstName.Size = new System.Drawing.Size(230, 20);
+            this.TextBoxFirstName.TabIndex = 3;
             // 
             // TextBoxLastName
             // 
@@ -227,13 +227,13 @@
             this.TextBoxAddress.Size = new System.Drawing.Size(210, 58);
             this.TextBoxAddress.TabIndex = 8;
             // 
-            // pictureBox1
+            // PictureBoxStudentImage
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(475, 154);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(210, 106);
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
+            this.PictureBoxStudentImage.Location = new System.Drawing.Point(475, 154);
+            this.PictureBoxStudentImage.Name = "PictureBoxStudentImage";
+            this.PictureBoxStudentImage.Size = new System.Drawing.Size(210, 106);
+            this.PictureBoxStudentImage.TabIndex = 9;
+            this.PictureBoxStudentImage.TabStop = false;
             // 
             // ButtonUploadImage
             // 
@@ -301,13 +301,13 @@
             this.Controls.Add(this.ButtonRemove);
             this.Controls.Add(this.ButtonEdit);
             this.Controls.Add(this.ButtonUploadImage);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.PictureBoxStudentImage);
             this.Controls.Add(this.TextBoxAddress);
             this.Controls.Add(this.TextBoxPhone);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.TextBoxLastName);
-            this.Controls.Add(this.TextBoxFisrtName);
+            this.Controls.Add(this.TextBoxFirstName);
             this.Controls.Add(this.ButtonFind);
             this.Controls.Add(this.TextBoxID);
             this.Controls.Add(this.label8);
@@ -324,7 +324,7 @@
             this.DoubleClick += new System.EventHandler(this.UpdateDeleteStudentForm_DoubleClick);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStudentImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +342,7 @@
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.TextBox TextBoxID;
         public System.Windows.Forms.Button ButtonFind;
-        public System.Windows.Forms.TextBox TextBoxFisrtName;
+        public System.Windows.Forms.TextBox TextBoxFirstName;
         public System.Windows.Forms.TextBox TextBoxLastName;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
         public System.Windows.Forms.RadioButton RadioButtonMale;
@@ -350,7 +350,7 @@
         public System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.TextBox TextBoxPhone;
         public System.Windows.Forms.TextBox TextBoxAddress;
-        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox PictureBoxStudentImage;
         public System.Windows.Forms.Button ButtonUploadImage;
         public System.Windows.Forms.Button ButtonEdit;
         public System.Windows.Forms.Button ButtonRemove;

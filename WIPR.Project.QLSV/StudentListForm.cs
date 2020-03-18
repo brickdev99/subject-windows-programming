@@ -60,7 +60,7 @@ namespace WIPR.Project.QLSV
             
             //Lay du lieu tu Student ID - FName - LName - BirthDate - Gender - Phone - Address - Picture
             updateDeleteForm.TextBoxID.Text = this.DataGridView1.CurrentRow.Cells[0].Value.ToString();
-            updateDeleteForm.TextBoxFisrtName.Text = this.DataGridView1.CurrentRow.Cells[1].Value.ToString();
+            updateDeleteForm.TextBoxFirstName.Text = this.DataGridView1.CurrentRow.Cells[1].Value.ToString();
             updateDeleteForm.TextBoxLastName.Text = this.DataGridView1.CurrentRow.Cells[2].Value.ToString();
             updateDeleteForm.dateTimePicker1.Value = (DateTime)this.DataGridView1.CurrentRow.Cells[3].Value;
             //Gender
@@ -73,7 +73,7 @@ namespace WIPR.Project.QLSV
             byte[] pic;
             pic = (byte[])this.DataGridView1.CurrentRow.Cells[7].Value;
             MemoryStream picture = new MemoryStream(pic);
-            updateDeleteForm.pictureBox1.Image = Image.FromStream(picture);
+            updateDeleteForm.PictureBoxStudentImage.Image = Image.FromStream(picture);
             this.Show();
 
             updateDeleteForm.Show();

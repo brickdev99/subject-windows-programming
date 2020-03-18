@@ -39,14 +39,45 @@ namespace WIPR.Project.QLSV
 
         }
 
-        private void ButtonRemove_Click(object sender, EventArgs e)
-        {
+        Student student = new Student();
 
+        //Search theo Student ID, 
+        private void ButtonFind_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(this.TextBoxID.Text);
+            SqlCommand command = new SqlCommand("SELECT * FROM student WHERE id = " + id);
+
+            DataTable table = student.getStudents(command);
+            if(table.Rows.Count > 0)
+            {
+                this.TextBoxFirstName.Text = table.Rows[0]["firstname"].ToString();
+                this.TextBoxLastName.Text = table.Rows[0]["lastname"].ToString();
+                this.dateTimePicker1.Value = (DateTime)table.Rows[0]["birthdate"];
+                //Gender
+                if(table.Rows[0]["gender"].ToString() == "Female") { this.RadioButtonFemale.Checked = true; }
+                else { this.RadioButtonMale.Checked = true; }
+                this.TextBoxPhone.Text = table.Rows[0]["phone"].ToString();
+                this.TextBoxAddress.Text = table.Rows[0]["address"].ToString();
+
+                byte[] pic = (byte[])table.Rows[0]["picture"];
+                MemoryStream picture = new MemoryStream(pic);
+                this.PictureBoxStudentImage.Image = Image.FromStream(picture);
+            }
+            else
+            {
+                MessageBox.Show("Not Found!", "Find Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        //Kiem Tra du lieu dau vao
+        private void TextBoxID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) { e.Handled = true; }
         }
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(TextBoxStudentID.Text);
+            int id;
             string firstname = TextBoxFirstName.Text;
             string lastname = TextBoxLastName.Text;
             DateTime birthdate = dateTimePicker1.Value;
@@ -66,55 +97,77 @@ namespace WIPR.Project.QLSV
             }
             else if (verif())
             {
-                PictureBoxStudentImage.Image.Save(picture, PictureBoxStudentImage.Image.RawFormat);
+                try
+                {
+                    id = Convert.ToInt32(TextBoxID.Text);
+                    PictureBoxStudentImage.Image.Save(picture, PictureBoxStudentImage.Image.RawFormat);
 
-                if (student.insertStudent(id, firstname, lastname, birthdate, gender, phone, address, picture))
+                    if (student.updateStudent(id, firstname, lastname, birthdate, gender, phone, address, picture))
+                    {
+                        MessageBox.Show("Student Information update!", "Edit Student", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error", "Edit Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } catch(Exception ex)
                 {
-                    MessageBox.Show("New Student Add", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Error", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Edit Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("Empty Fields", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Empty Fields", "Edit Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-    }
-
-        Student student = new Student();
-        string chosseComboBox;
-        //Search theo Student ID, 
-        private void ButtonFind_Click(object sender, EventArgs e)
+        //Kiem tra du lieu Input
+        bool verif()
         {
-            if(this.ComboBoxSearch.SelectedIndex.ToString() == "ID") { chosseComboBox = TextBoxID.Text; }
-            else if(this.ComboBoxSearch.SelectedIndex.ToString() == "First Name") { chosseComboBox = TextBoxFisrtName.Text; }
-            else if(this.ComboBoxSearch.SelectedIndex.ToString() == "Phone") { chosseComboBox = TextBoxPhone.Text; }
-            else if(this.ComboBoxSearch.SelectedIndex.ToString() == "Address") { chosseComboBox = TextBoxAddress.Text; }
-
-            SqlCommand command = new SqlCommand("SELECT * FROM student WHERE id = " + Convert.ToString(chosseComboBox));
-
-            DataTable table = student.getStudents(command);
-            if(table.Rows.Count > 0)
+            if ((TextBoxFirstName.Text.Trim() == "")
+                || (TextBoxLastName.Text.Trim() == "")
+                || (TextBoxAddress.Text.Trim() == "")
+                || (TextBoxPhone.Text.Trim() == "")
+                || (PictureBoxStudentImage.Image == null))
             {
-                this.TextBoxFisrtName.Text = table.Rows[0]["firstname"].ToString();
-                this.TextBoxLastName.Text = table.Rows[0]["lastname"].ToString();
-                this.dateTimePicker1.Value = (DateTime)table.Rows[0]["birthdate"];
-                //Gender
-                if(table.Rows[0]["gender"].ToString() == "Female") { this.RadioButtonFemale.Checked = true; }
-                else { this.RadioButtonMale.Checked = true; }
-                this.TextBoxPhone.Text = table.Rows[0]["phone"].ToString();
-                this.TextBoxAddress.Text = table.Rows[0]["address"].ToString();
-
-                byte[] pic = (byte[])table.Rows[0]["picture"];
-                MemoryStream picture = new MemoryStream(pic);
-                this.pictureBox1.Image = Image.FromStream(picture);
+                return false;
             }
             else
             {
-                MessageBox.Show("Not Found!", "Find Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return true;
+            }
+        }
+
+        private void ButtonRemove_Click(object sender, EventArgs e)
+        {
+            //Delete Student
+            try
+            {
+                int  studentid = Convert.ToInt32(TextBoxID.Text);
+
+                //Display show a information before the delete
+                if(MessageBox.Show("Are you sure want to delete This Student?", "Delete Student", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (student.deleteStudent(studentid))
+                    {
+                        MessageBox.Show("Student Deleted", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Clean all of the data
+                        TextBoxID.Text = "";
+                        TextBoxFirstName.Text = "";
+                        TextBoxLastName.Text = "";
+                        TextBoxPhone.Text = "";
+                        TextBoxAddress.Text = "";
+                        dateTimePicker1.Value = DateTime.Now;
+                        PictureBoxStudentImage.Image = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Student Not Deleted", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please Enter A Valid ID", "Remove Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
