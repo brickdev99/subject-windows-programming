@@ -50,6 +50,8 @@
             this.ButtonUploadImage = new System.Windows.Forms.Button();
             this.ButtonEdit = new System.Windows.Forms.Button();
             this.ButtonRemove = new System.Windows.Forms.Button();
+            this.ComboBoxSearch = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -147,7 +149,7 @@
             this.ButtonFind.BackColor = System.Drawing.Color.Green;
             this.ButtonFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonFind.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ButtonFind.Location = new System.Drawing.Point(272, 25);
+            this.ButtonFind.Location = new System.Drawing.Point(272, 319);
             this.ButtonFind.Name = "ButtonFind";
             this.ButtonFind.Size = new System.Drawing.Size(75, 34);
             this.ButtonFind.TabIndex = 2;
@@ -247,7 +249,7 @@
             // 
             this.ButtonEdit.BackColor = System.Drawing.Color.RoyalBlue;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(228, 319);
+            this.ButtonEdit.Location = new System.Drawing.Point(411, 319);
             this.ButtonEdit.Name = "ButtonEdit";
             this.ButtonEdit.Size = new System.Drawing.Size(119, 37);
             this.ButtonEdit.TabIndex = 11;
@@ -259,7 +261,7 @@
             // 
             this.ButtonRemove.BackColor = System.Drawing.Color.Red;
             this.ButtonRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonRemove.Location = new System.Drawing.Point(401, 319);
+            this.ButtonRemove.Location = new System.Drawing.Point(566, 319);
             this.ButtonRemove.Name = "ButtonRemove";
             this.ButtonRemove.Size = new System.Drawing.Size(119, 37);
             this.ButtonRemove.TabIndex = 11;
@@ -267,11 +269,35 @@
             this.ButtonRemove.UseVisualStyleBackColor = false;
             this.ButtonRemove.Click += new System.EventHandler(this.ButtonRemove_Click);
             // 
+            // ComboBoxSearch
+            // 
+            this.ComboBoxSearch.FormattingEnabled = true;
+            this.ComboBoxSearch.Items.AddRange(new object[] {
+            "ID",
+            "First Name",
+            "Phone",
+            "Address"});
+            this.ComboBoxSearch.Location = new System.Drawing.Point(118, 325);
+            this.ComboBoxSearch.Name = "ComboBoxSearch";
+            this.ComboBoxSearch.Size = new System.Drawing.Size(148, 21);
+            this.ComboBoxSearch.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(27, 327);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(84, 20);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Search by:";
+            // 
             // UpdateDeleteStudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 377);
+            this.ClientSize = new System.Drawing.Size(755, 386);
+            this.Controls.Add(this.ComboBoxSearch);
             this.Controls.Add(this.ButtonRemove);
             this.Controls.Add(this.ButtonEdit);
             this.Controls.Add(this.ButtonUploadImage);
@@ -287,6 +313,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
@@ -327,5 +354,7 @@
         public System.Windows.Forms.Button ButtonUploadImage;
         public System.Windows.Forms.Button ButtonEdit;
         public System.Windows.Forms.Button ButtonRemove;
+        private System.Windows.Forms.ComboBox ComboBoxSearch;
+        private System.Windows.Forms.Label label9;
     }
 }

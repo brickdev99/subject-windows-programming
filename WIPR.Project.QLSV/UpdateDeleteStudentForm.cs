@@ -50,12 +50,16 @@ namespace WIPR.Project.QLSV
         }
 
         Student student = new Student();
-
+        string chosseComboBox;
         //Search theo Student ID, 
         private void ButtonFind_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(this.TextBoxID.Text);
-            SqlCommand command = new SqlCommand("SELECT * FROM student WHERE id = " + id);
+            if(this.ComboBoxSearch.SelectedIndex.ToString() == "ID") { chosseComboBox = TextBoxID.Text; }
+            else if(this.ComboBoxSearch.SelectedIndex.ToString() == "First Name") { chosseComboBox = TextBoxFisrtName.Text; }
+            else if(this.ComboBoxSearch.SelectedIndex.ToString() == "Phone") { chosseComboBox = TextBoxPhone.Text; }
+            else if(this.ComboBoxSearch.SelectedIndex.ToString() == "Address") { chosseComboBox = TextBoxAddress.Text; }
+
+            SqlCommand command = new SqlCommand("SELECT * FROM student WHERE id = " + Convert.ToString(chosseComboBox));
 
             DataTable table = student.getStudents(command);
             if(table.Rows.Count > 0)

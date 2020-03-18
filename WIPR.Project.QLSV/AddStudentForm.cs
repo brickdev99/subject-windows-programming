@@ -86,5 +86,15 @@ namespace WIPR.Project.QLSV
                 PictureBoxStudentImage.Image = Image.FromFile(open.FileName);
             }
         }
+
+        private void TextBoxFirstName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_Cancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace WIPR.Project.QLSV
         private void StudentListForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'qLSVDBDataSet.student' table. You can move, or remove it, as needed.
-            this.studentTableAdapter.Fill(this.qLSVDBDataSet.student);
+            //this.studentTableAdapter.Fill(this.qLSVDBDataSet.student);
 
             SqlCommand command = new SqlCommand("SELECT * FROM student");
             DataGridView1.ReadOnly = true;
