@@ -52,5 +52,34 @@ namespace WIPR.Project.QLSV
 
             return table;
         }
+
+        public bool updateStudent(int id, string firstname, string lastname, DateTime birthdate, string gender, string phone, string address, MemoryStream picture)
+        {
+            SqlCommand command = new SqlCommand(
+                "UPDATE student SET firstname=@Fname, lastname=@Lname, birthdate=@Bdate, gender=@Gender, phone=@Phone, address=@Address, picture=@Picture WHERE  id=@ID",
+                dB.GetConnection);
+
+            command.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = id;
+            command.Parameters.Add("@Fname", System.Data.SqlDbType.VarChar).Value = firstname;
+            command.Parameters.Add("@Lname", System.Data.SqlDbType.VarChar).Value = lastname;
+            command.Parameters.Add("@Bdate", System.Data.SqlDbType.DateTime).Value = birthdate;
+            command.Parameters.Add("@Gender", System.Data.SqlDbType.VarChar).Value = gender;
+            command.Parameters.Add("@Phone", System.Data.SqlDbType.VarChar).Value = phone;
+            command.Parameters.Add("@Address", System.Data.SqlDbType.VarChar).Value = address;
+            command.Parameters.Add("@Picture", System.Data.SqlDbType.Image).Value = picture.ToArray();
+
+            dB.openConnection();
+
+            if ((command.ExecuteNonQuery() == 1))
+            {
+                dB.closeConnection();
+                return true;
+            }
+            else
+            {
+                dB.closeConnection();
+                return false;
+            }
+        }
     }
 }

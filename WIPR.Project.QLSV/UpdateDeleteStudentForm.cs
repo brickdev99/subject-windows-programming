@@ -46,8 +46,43 @@ namespace WIPR.Project.QLSV
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
+            int id = Convert.ToInt32(TextBoxStudentID.Text);
+            string firstname = TextBoxFirstName.Text;
+            string lastname = TextBoxLastName.Text;
+            DateTime birthdate = dateTimePicker1.Value;
+            string phone = TextBoxPhone.Text;
+            string address = TextBoxAddress.Text;
+            string gender = "Male";
+            if ((RadioButtonFemale.Checked)) { gender = "Female"; }
+            MemoryStream picture = new MemoryStream();
 
+            int bornYear = dateTimePicker1.Value.Year;
+            int thisYear = DateTime.Now.Year;
+
+            //Sinh vien 10 - 100, co the thay doi
+            if ((thisYear - bornYear) < 10 || (thisYear - bornYear) > 100)
+            {
+                MessageBox.Show("The Student Age Must Be Between 10 and 100 year", "Invalid Birth Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (verif())
+            {
+                PictureBoxStudentImage.Image.Save(picture, PictureBoxStudentImage.Image.RawFormat);
+
+                if (student.insertStudent(id, firstname, lastname, birthdate, gender, phone, address, picture))
+                {
+                    MessageBox.Show("New Student Add", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Empty Fields", "Add Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
+    }
 
         Student student = new Student();
         string chosseComboBox;
