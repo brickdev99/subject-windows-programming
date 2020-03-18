@@ -44,8 +44,8 @@
             this.TextBoxLastName = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.RadioButtonMale = new System.Windows.Forms.RadioButton();
             this.RadioButtonFemale = new System.Windows.Forms.RadioButton();
+            this.RadioButtonMale = new System.Windows.Forms.RadioButton();
             this.TextBoxPhone = new System.Windows.Forms.TextBox();
             this.TextBoxAddress = new System.Windows.Forms.TextBox();
             this.PictureBoxStudentImage = new System.Windows.Forms.PictureBox();
@@ -136,6 +136,7 @@
             // bt_Cancel
             // 
             this.bt_Cancel.BackColor = System.Drawing.Color.Red;
+            this.bt_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_Cancel.Location = new System.Drawing.Point(53, 537);
             this.bt_Cancel.Name = "bt_Cancel";
@@ -162,7 +163,7 @@
             this.bt_UploadImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_UploadImage.Location = new System.Drawing.Point(136, 489);
             this.bt_UploadImage.Name = "bt_UploadImage";
-            this.bt_UploadImage.Size = new System.Drawing.Size(215, 23);
+            this.bt_UploadImage.Size = new System.Drawing.Size(215, 25);
             this.bt_UploadImage.TabIndex = 6;
             this.bt_UploadImage.Text = "Upload Image";
             this.bt_UploadImage.UseVisualStyleBackColor = true;
@@ -206,18 +207,6 @@
             this.panel1.Size = new System.Drawing.Size(215, 29);
             this.panel1.TabIndex = 12;
             // 
-            // RadioButtonMale
-            // 
-            this.RadioButtonMale.AutoSize = true;
-            this.RadioButtonMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RadioButtonMale.Location = new System.Drawing.Point(22, 3);
-            this.RadioButtonMale.Name = "RadioButtonMale";
-            this.RadioButtonMale.Size = new System.Drawing.Size(61, 24);
-            this.RadioButtonMale.TabIndex = 0;
-            this.RadioButtonMale.TabStop = true;
-            this.RadioButtonMale.Text = "Male";
-            this.RadioButtonMale.UseVisualStyleBackColor = true;
-            // 
             // RadioButtonFemale
             // 
             this.RadioButtonFemale.AutoSize = true;
@@ -229,6 +218,18 @@
             this.RadioButtonFemale.TabStop = true;
             this.RadioButtonFemale.Text = "Female";
             this.RadioButtonFemale.UseVisualStyleBackColor = true;
+            // 
+            // RadioButtonMale
+            // 
+            this.RadioButtonMale.AutoSize = true;
+            this.RadioButtonMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RadioButtonMale.Location = new System.Drawing.Point(22, 3);
+            this.RadioButtonMale.Name = "RadioButtonMale";
+            this.RadioButtonMale.Size = new System.Drawing.Size(61, 24);
+            this.RadioButtonMale.TabIndex = 0;
+            this.RadioButtonMale.TabStop = true;
+            this.RadioButtonMale.Text = "Male";
+            this.RadioButtonMale.UseVisualStyleBackColor = true;
             // 
             // TextBoxPhone
             // 

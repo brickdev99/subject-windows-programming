@@ -247,7 +247,7 @@
             // 
             // ButtonEdit
             // 
-            this.ButtonEdit.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ButtonEdit.BackColor = System.Drawing.Color.DodgerBlue;
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonEdit.Location = new System.Drawing.Point(411, 319);
             this.ButtonEdit.Name = "ButtonEdit";
@@ -274,9 +274,7 @@
             this.ComboBoxSearch.FormattingEnabled = true;
             this.ComboBoxSearch.Items.AddRange(new object[] {
             "ID",
-            "First Name",
-            "Phone",
-            "Address"});
+            "Phone"});
             this.ComboBoxSearch.Location = new System.Drawing.Point(118, 325);
             this.ComboBoxSearch.Name = "ComboBoxSearch";
             this.ComboBoxSearch.Size = new System.Drawing.Size(148, 21);

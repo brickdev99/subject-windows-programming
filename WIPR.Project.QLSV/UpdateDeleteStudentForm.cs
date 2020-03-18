@@ -31,7 +31,13 @@ namespace WIPR.Project.QLSV
 
         private void ButtonUploadImage_Click(object sender, EventArgs e)
         {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Select Image(*.jpg;*.png;*.gif)|*.ipg;*.png;*.gif";
 
+            if ((open.ShowDialog() == DialogResult.OK))
+            {
+                PictureBoxStudentImage.Image = Image.FromFile(open.FileName);
+            }
         }
 
         private void UpdateDeleteStudentForm_DoubleClick(object sender, EventArgs e)
@@ -41,31 +47,39 @@ namespace WIPR.Project.QLSV
 
         Student student = new Student();
 
-        //Search theo Student ID, 
+        //Search theo Student ID, Phone
         private void ButtonFind_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(this.TextBoxID.Text);
-            SqlCommand command = new SqlCommand("SELECT * FROM student WHERE id = " + id);
-
-            DataTable table = student.getStudents(command);
-            if(table.Rows.Count > 0)
-            {
-                this.TextBoxFirstName.Text = table.Rows[0]["firstname"].ToString();
-                this.TextBoxLastName.Text = table.Rows[0]["lastname"].ToString();
-                this.dateTimePicker1.Value = (DateTime)table.Rows[0]["birthdate"];
-                //Gender
-                if(table.Rows[0]["gender"].ToString() == "Female") { this.RadioButtonFemale.Checked = true; }
-                else { this.RadioButtonMale.Checked = true; }
-                this.TextBoxPhone.Text = table.Rows[0]["phone"].ToString();
-                this.TextBoxAddress.Text = table.Rows[0]["address"].ToString();
-
-                byte[] pic = (byte[])table.Rows[0]["picture"];
-                MemoryStream picture = new MemoryStream(pic);
-                this.PictureBoxStudentImage.Image = Image.FromStream(picture);
-            }
+            //Dieu kien search
+            int chosse;
+            if (ComboBoxSearch.SelectedItem == null) { MessageBox.Show("Please chosse for Search!", "Find Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             else
             {
-                MessageBox.Show("Not Found!", "Find Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if(ComboBoxSearch.SelectedItem.ToString() == "ID") { chosse = Convert.ToInt32(this.TextBoxID.Text); }
+                else { chosse = Convert.ToInt32(this.TextBoxPhone.Text); }
+                SqlCommand command = new SqlCommand("SELECT * FROM student WHERE id = " + chosse + "or phone = " + chosse);
+
+                DataTable table = student.getStudents(command);
+                if (table.Rows.Count > 0)
+                {
+                    this.TextBoxID.Text = table.Rows[0]["id"].ToString();
+                    this.TextBoxFirstName.Text = table.Rows[0]["firstname"].ToString();
+                    this.TextBoxLastName.Text = table.Rows[0]["lastname"].ToString();
+                    this.dateTimePicker1.Value = (DateTime)table.Rows[0]["birthdate"];
+                    //Gender
+                    if (table.Rows[0]["gender"].ToString() == "Female") { this.RadioButtonFemale.Checked = true; }
+                    else { this.RadioButtonMale.Checked = true; }
+                    this.TextBoxPhone.Text = table.Rows[0]["phone"].ToString();
+                    this.TextBoxAddress.Text = table.Rows[0]["address"].ToString();
+
+                    byte[] pic = (byte[])table.Rows[0]["picture"];
+                    MemoryStream picture = new MemoryStream(pic);
+                    this.PictureBoxStudentImage.Image = Image.FromStream(picture);
+                }
+                else
+                {
+                    MessageBox.Show("Not Found!", "Find Student", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 
