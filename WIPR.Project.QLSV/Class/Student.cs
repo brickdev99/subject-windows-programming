@@ -9,11 +9,22 @@ using System.Threading.Tasks;
 
 namespace WIPR.Project.QLSV
 {
-    class Student
+    public class Student
     {
         MY_DB dB = new MY_DB();
-        
-        //Function to insert a new student
+
+        /// <summary>
+        /// Function to insert a new student
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="birthdate"></param>
+        /// <param name="gender"></param>
+        /// <param name="phone"></param>
+        /// <param name="address"></param>
+        /// <param name="picture"></param>
+        /// <returns></returns>
         public bool insertStudent(int id, string firstname, string lastname, DateTime birthdate, string gender, string phone, string address, MemoryStream picture)
         {
             SqlCommand command = new SqlCommand("INSERT INTO student (id, firstname, lastname, birthdate, gender, phone, address, picture)"
@@ -34,6 +45,11 @@ namespace WIPR.Project.QLSV
             else { dB.closeConnection(); return false; }
         }
 
+        /// <summary>
+        /// Get student information from Database
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         public DataTable getStudents(SqlCommand command)
         {
             command.Connection = dB.GetConnection;
@@ -45,6 +61,18 @@ namespace WIPR.Project.QLSV
             return table;
         }
 
+        /// <summary>
+        /// Update student
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="birthdate"></param>
+        /// <param name="gender"></param>
+        /// <param name="phone"></param>
+        /// <param name="address"></param>
+        /// <param name="picture"></param>
+        /// <returns></returns>
         public bool updateStudent(int id, string firstname, string lastname, DateTime birthdate, string gender, string phone, string address, MemoryStream picture)
         {
             SqlCommand command = new SqlCommand("UPDATE student SET firstname=@Fname, lastname=@Lname, birthdate=@Bdate, gender=@Gender, phone=@Phone, address=@Address, picture=@Picture WHERE  id=@ID",
@@ -65,6 +93,11 @@ namespace WIPR.Project.QLSV
             else { dB.closeConnection(); return false; }
         }
 
+        /// <summary>
+        /// Delete one student in Database by (StudentID)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool deleteStudent(int id)
         {
             SqlCommand command = new SqlCommand("DELETE FROM student WHERE id = @id", dB.GetConnection);
@@ -75,5 +108,49 @@ namespace WIPR.Project.QLSV
             if((command.ExecuteNonQuery() == 1)) { dB.closeConnection();return true; }
             else { dB.closeConnection(); return false; }
         }
+
+        /// <summary>
+        /// Count student
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        private string execCount(string query)
+        {
+            SqlCommand command = new SqlCommand(query, dB.GetConnection);
+            dB.openConnection();
+
+            String count = command.ExecuteScalar().ToString();
+            dB.closeConnection();
+
+            return count;
+        }
+
+        /// <summary>
+        /// Count all student from database
+        /// </summary>
+        /// <returns></returns>
+        public string totalStudent()
+        {
+            return execCount("SELECT COUNT(*) FROM student");
+        }
+
+        /// <summary>
+        /// Count all male from database
+        /// </summary>
+        /// <returns></returns>
+        public string totalMaleStudent()
+        {
+            return execCount("SELECT COUNT(*) FROM student WHERE gender = 'Male' ");
+        }
+
+        /// <summary>
+        /// Count all female from database
+        /// </summary>
+        /// <returns></returns>
+        public string totalFemaleStudent()
+        {
+            return execCount("SELECT COUNT(*) FROM student WHERE gender = 'Female'");
+        }
     }
 }
+    

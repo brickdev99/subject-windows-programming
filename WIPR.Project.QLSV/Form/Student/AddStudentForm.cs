@@ -18,6 +18,11 @@ namespace WIPR.Project.QLSV
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Add one student to Database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bt_Add_Click(object sender, EventArgs e)
         {
             Student student = new Student();
@@ -76,6 +81,11 @@ namespace WIPR.Project.QLSV
             }
         }
 
+        /// <summary>
+        /// Import image from disk
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bt_UploadImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();

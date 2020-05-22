@@ -21,6 +21,14 @@ namespace WIPR.Project.QLSV
 
         Student student = new Student();
 
+        public object SystemDBnull { get; private set; }
+        public object DBnull { get; private set; }
+
+        /// <summary>
+        /// Process load student data from Database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StudentListForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'qLSVDBDataSet.student' table. You can move, or remove it, as needed.
@@ -39,6 +47,11 @@ namespace WIPR.Project.QLSV
             DataGridView1.AllowUserToAddRows = false;
         }
 
+        /// <summary>
+        /// Reload the DataGirdView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonRefresh_Click(object sender, EventArgs e)
         {
             SqlCommand command = new SqlCommand("SELECT * FROM student");
@@ -54,6 +67,11 @@ namespace WIPR.Project.QLSV
             DataGridView1.AllowUserToAddRows = false;
         }
 
+        /// <summary>
+        /// Extra while Mouse DoubleClick one student
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             UpdateDeleteStudentForm updateDeleteForm = new UpdateDeleteStudentForm();
@@ -71,9 +89,12 @@ namespace WIPR.Project.QLSV
 
             //Picture
             byte[] pic;
-            pic = (byte[])this.DataGridView1.CurrentRow.Cells[7].Value;
-            MemoryStream picture = new MemoryStream(pic);
-            updateDeleteForm.PictureBoxStudentImage.Image = Image.FromStream(picture);
+            if(DataGridView1.CurrentRow.Cells[7].Value != DBNull.Value)
+            {
+                pic = (byte[])this.DataGridView1.CurrentRow.Cells[7].Value;
+                MemoryStream picture = new MemoryStream(pic);
+                updateDeleteForm.PictureBoxStudentImage.Image = Image.FromStream(picture);
+            }
             this.Show();
 
             updateDeleteForm.Show();

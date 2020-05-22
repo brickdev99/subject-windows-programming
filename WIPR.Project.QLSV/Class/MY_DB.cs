@@ -9,7 +9,7 @@ namespace WIPR.Project.QLSV
 {
     class MY_DB
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=QLSVDB; Integrated Security = True;");
+        SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=QLSVDB; Integrated Security = True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         
         //Get the connection
         public SqlConnection GetConnection

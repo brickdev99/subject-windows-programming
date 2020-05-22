@@ -29,6 +29,11 @@ namespace WIPR.Project.QLSV
             
         }
 
+        /// <summary>
+        /// Import image from disk
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonUploadImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -47,7 +52,11 @@ namespace WIPR.Project.QLSV
 
         Student student = new Student();
 
-        //Search theo Student ID, Phone
+        /// <summary>
+        /// Search student by StudentID or Phone
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonFind_Click(object sender, EventArgs e)
         {
             //Dieu kien search
@@ -89,6 +98,11 @@ namespace WIPR.Project.QLSV
             if(!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) { e.Handled = true; }
         }
 
+        /// <summary>
+        /// Edit, update student information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             int id;
@@ -151,6 +165,11 @@ namespace WIPR.Project.QLSV
             }
         }
 
+        /// <summary>
+        /// Remove, delete student
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonRemove_Click(object sender, EventArgs e)
         {
             //Delete Student
