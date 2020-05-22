@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,15 +55,17 @@ namespace WIPR.Project.QLSV
         /// <param name="e"></param>
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            int height = dataGridViewResult.Height;
-            PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
-            dataGridViewResult.Height = dataGridViewResult.RowCount * dataGridViewResult.RowTemplate.Height * 2;
+            PrintDocument printDocument1 = new PrintDocument();
+            PrintDialog printDialog = new PrintDialog();
 
-            Graphics g = this.CreateGraphics();
-            bmp = new Bitmap(this.dataGridViewResult.Width * 2, this.dataGridViewResult.Height);
-            dataGridViewResult.DrawToBitmap(bmp, new Rectangle(0, 0, dataGridViewResult.Width, dataGridViewResult.Height));
-            dataGridViewResult.Height = height;
-            printPreviewDialog.ShowDialog();
+            printDialog.Document = printDocument1;
+            printDialog.AllowSomePages = true;
+            printDialog.AllowSelection = true;
+            if (DialogResult.OK == printDialog.ShowDialog())
+            {
+                printDocument1.DocumentName = "Doucument printer";
+                printDocument1.Print();
+            }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

@@ -44,6 +44,7 @@ namespace WIPR.Project.QLSV
                 {
                     Main_Form main = new Main_Form();
                     main.ShowDialog(this);
+                    this.Close();
                 }
                 else
                 {
@@ -52,7 +53,7 @@ namespace WIPR.Project.QLSV
                     Globals.setGlobalUserId(userid);
                     human.ShowDialog(this);
                 }
-                this.Close();
+                
             }
             else
             {
