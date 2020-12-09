@@ -1,2 +1,2 @@
-# WIPR-project-QLSV
-Quan Ly Sinh Vien
+# student-managament
+subject windows programming
