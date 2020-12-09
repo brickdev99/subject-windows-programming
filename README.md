@@ -1,2 +1,2 @@
-# student-managament
+# student-management
 subject windows programming
